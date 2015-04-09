@@ -1,3 +1,13 @@
+//Configuración Mongodb
+//Primero mongoose luego express para evitar
+//"MissingSchemaError: Schema hasn't been registered for model
+var mongoose = require('mongoose');
+//Modelos incluidos
+require('./models/Posts');
+require('./models/Comments');
+//Fin Modelos
+mongoose.connect('mongodb://localhost/flappernews');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -55,6 +65,7 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 
 module.exports = app;
