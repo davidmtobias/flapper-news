@@ -2,11 +2,18 @@
 //Primero mongoose luego express para evitar
 //"MissingSchemaError: Schema hasn't been registered for model
 var mongoose = require('mongoose');
+var passport = require('passport');
+
+
 //Modelos incluidos
 require('./models/Posts');
 require('./models/Comments');
-//Fin Modelos
+require('./models/Users');
+//Fin de modelos
+require('./config/passport');
+
 mongoose.connect('mongodb://localhost/flappernews');
+
 
 var express = require('express');
 var path = require('path');
@@ -18,7 +25,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+
 var app = express();
+app.use(passport.initialize());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
